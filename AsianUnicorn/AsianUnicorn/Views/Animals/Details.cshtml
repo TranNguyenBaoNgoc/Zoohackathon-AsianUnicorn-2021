@@ -1,0 +1,104 @@
+﻿@model AsianUnicorn.Models.Animal
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <div class="card-content">
+            <div class="card-body">
+                <form class="form form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <dt>
+                                    Name Class
+                                </dt>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <dd>
+                                    @Html.DisplayFor(model => model.Class.NameClass)
+                                </dd>
+                            </div>
+                            <div class="col-md-4">
+                                <dt>
+                                    Common Name
+                                </dt>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <dd>
+                                    @Html.DisplayFor(model => model.CommonName)
+                                </dd>
+                                </div>
+                                <div class="col-md-4">
+                                    <dt>
+                                        Scientific Name
+                                    </dt>
+                                </div>
+                                <div class="col-md-8 form-group">
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ScientificName)
+                                    </dd>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <dt>
+                                            English Name
+                                        </dt>
+                                    </div>
+                                    <div class="col-md-8 form-group">
+                                        <dd>
+                                            @Html.DisplayFor(model => model.EnglishName)
+                                        </dd>
+                                        </div>
+                                        <div class="col-md-4">
+
+                                            <dt>
+                                                .Conservation Group
+                                            </dt>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <dd>
+                                                @Html.DisplayFor(model => model.ConservationStatu.ConservationGroup)
+                                            </dd>
+                                        </div>
+                                                <div class="col-md-4">
+                                                    <dt>
+                                                        Protection Group
+                                                    </dt>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <dd>
+                                                        @Html.DisplayFor(model => model.ProtectionStatu.ProtectionGroup)
+                                                    </dd>
+                                                 </div>
+                                                    <div class="col-md-4">
+                                                        <dt>
+                                                            Distribution Animal
+                                                        </dt>
+                                                    </div>
+                                                    <div class="col-md-8 form-group">
+                                                        <dd>
+                                                            @Html.DisplayFor(model => model.DistributionAnimal)
+                                                        </dd>
+                                                       
+                                                        </div>
+                                                    </div>
+                                                </div>
+                   
+</form>
+            </div>
+        </div>
+
+    </dl>
+
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

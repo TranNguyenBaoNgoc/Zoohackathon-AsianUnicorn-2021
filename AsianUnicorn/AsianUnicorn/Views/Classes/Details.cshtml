@@ -1,0 +1,35 @@
+﻿@model AsianUnicorn.Models.Class
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Class</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameClass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameClass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionClass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionClass)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDClass }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

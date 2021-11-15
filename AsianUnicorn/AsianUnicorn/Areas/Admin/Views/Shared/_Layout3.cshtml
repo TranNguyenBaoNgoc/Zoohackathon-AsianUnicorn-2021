@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Management Meeting</title>
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/chartjs/Chart.min.css">
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/simple-datatables/style.css">
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/choices.js/choices.min.css" />
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/quill/quill.bubble.css">
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/quill/quill.snow.css">
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="~/Areas/Admin/assets/css/app.css">
+    <link rel="shortcut icon" href="~/Areas/Admin/assets/images/favicon.svg" type="image/x-icon">
+
+
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class='active'>
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <a href="@Url.Action("Index","Home")" class="logo">
+                        <img src="~/Areas/Admin/assets/images/logo.jpg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        @*REPORT*@
+                        <li class='sidebar-title'>Manage Report</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="@Url.Action("Index","Home")" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Report List</span>
+                            </a>
+
+                        </li>
+
+                        @*ANIMAL*@
+                        <li class='sidebar-title'>Manage Scientific List</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="@Url.Action("Index","Scientific")" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Scientific List</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item active ">
+                            <a href="@Url.Action("Index","Animal")" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Animal List</span>
+                            </a>
+                        </li>
+
+                        @*BLOG*@
+                        <li class='sidebar-title'>BLOG</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="@Url.Action("Index","Blog")" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Blog</span>
+                            </a>
+                        </li>
+                        }
+
+
+
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <nav class="navbar navbar-header navbar-expand navbar-light">
+                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+                <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="main-content container-fluid">
+                @RenderBody()
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2020 &copy; Voler</p>
+                    </div>
+                    <div class="float-end">
+                        <p>
+                            Crafted with <span class='text-danger'><i data-feather="heart"></i></span> by <a href="http://ahmadsaugi.com">Ahmad Saugi</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="~/Areas/Admin/assets/js/feather-icons/feather.min.js"></script>
+    <script src="~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/app.js"></script>
+
+    <script src="~/Areas/Admin/assets/vendors/chartjs/Chart.min.js"></script>
+    <script src="~/Areas/Admin/assets/vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/pages/dashboard.js"></script>
+
+    <!-- Include Choices JavaScript -->
+    <script src="~/Areas/Admin/assets/vendors/choices.js/choices.min.js"></script>
+
+    <script src="~/Areas/Admin/assets/js/main.js"></script>
+
+    <script src="~/Areas/Admin/assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <script src="~/Areas/Admin/assets/js/vendors.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

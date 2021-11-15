@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AsianUnicorn.Models.AnimalProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Product from Animals</h2>
+
+<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <table class='table table-striped' id="table1">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AnimalProductsName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DescriptionAnimalProducts)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Animal.CommonName)
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AnimalProductsName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescriptionAnimalProducts)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Animal.CommonName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.AnimalProductsID })
+                            </td>
+                        </tr>
+                    }
+
+            </table>
+            </div></div></section>

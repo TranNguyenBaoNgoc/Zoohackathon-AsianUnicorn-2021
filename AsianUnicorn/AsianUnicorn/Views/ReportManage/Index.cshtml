@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AsianUnicorn.Models.Report>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhonNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reporter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DayReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhonNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reporter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayReport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

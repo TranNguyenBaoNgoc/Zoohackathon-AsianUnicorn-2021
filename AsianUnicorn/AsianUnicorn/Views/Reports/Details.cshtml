@@ -1,0 +1,59 @@
+﻿@model AsianUnicorn.Models.Report
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Report</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhonNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhonNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reporter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reporter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DayReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayReport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

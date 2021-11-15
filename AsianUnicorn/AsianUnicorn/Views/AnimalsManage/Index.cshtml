@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AsianUnicorn.Models.Animal>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CommonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScientificName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnglishName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DistributionAnimal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConservationStatu.ConservationGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class.NameClass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProtectionStatu.ProtectionGroup)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommonName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScientificName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DistributionAnimal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConservationStatu.ConservationGroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class.NameClass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProtectionStatu.ProtectionGroup)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AnimalID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AnimalID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AnimalID })
+        </td>
+    </tr>
+}
+
+</table>

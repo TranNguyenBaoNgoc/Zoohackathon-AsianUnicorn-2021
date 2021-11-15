@@ -1,0 +1,43 @@
+﻿@model AsianUnicorn.Models.AnimalProduct
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AnimalProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalProductsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalProductsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionAnimalProducts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionAnimalProducts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Animal.CommonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Animal.CommonName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AnimalProductsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
