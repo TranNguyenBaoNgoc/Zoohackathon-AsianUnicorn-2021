@@ -185,8 +185,8 @@
     <Compile Include="Controllers\Category_BlogController.cs" />
     <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReportManage.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\ReportsManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -260,6 +260,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\assets\blank.jpg" />
     <Content Include="Areas\Admin\assets\css\app.css" />
     <Content Include="Areas\Admin\assets\css\bootstrap.css" />
     <Content Include="Areas\Admin\assets\images\avatar\avatar-1.png" />
@@ -615,6 +616,7 @@
     <Content Include="Areas\Admin\assets\js\pages\ui-chartjs.js" />
     <Content Include="Areas\Admin\assets\js\pages\widgets.js" />
     <Content Include="Areas\Admin\assets\js\vendors.js" />
+    <Content Include="Areas\Admin\assets\logo.png" />
     <Content Include="Areas\Admin\assets\scss\app.html" />
     <Content Include="Areas\Admin\assets\scss\bootstrap.html" />
     <Content Include="Areas\Admin\assets\vendors\apexcharts\apexcharts.css" />
@@ -1371,10 +1373,6 @@
     <Content Include="Views\Category_Blog\Details.cshtml" />
     <Content Include="Views\Category_Blog\Edit.cshtml" />
     <Content Include="Views\Category_Blog\Index.cshtml" />
-    <Content Include="Views\ReportManage\Create.cshtml" />
-    <Content Include="Views\ReportManage\Details.cshtml" />
-    <Content Include="Views\ReportManage\Edit.cshtml" />
-    <Content Include="Views\ReportManage\Index.cshtml" />
     <Content Include="Views\Blogs1\Create.cshtml" />
     <Content Include="Views\Blogs1\Delete.cshtml" />
     <Content Include="Views\Blogs1\Details.cshtml" />
@@ -1383,6 +1381,11 @@
     <Content Include="Views\Reports\Create.cshtml" />
     <Content Include="Views\Reports\Details.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\ReportsManage\Create.cshtml" />
+    <Content Include="Views\ReportsManage\Delete.cshtml" />
+    <Content Include="Views\ReportsManage\Details.cshtml" />
+    <Content Include="Views\ReportsManage\Edit.cshtml" />
+    <Content Include="Views\ReportsManage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

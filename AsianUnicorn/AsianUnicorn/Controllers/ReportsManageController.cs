@@ -11,17 +11,17 @@ using AsianUnicorn.Models;
 
 namespace AsianUnicorn.Controllers
 {
-    public class ReportManage : Controller
+    public class ReportsManageController : Controller
     {
         private Hackathon2021Entities db = new Hackathon2021Entities();
 
-        // GET: ReportManage
+        // GET: ReportsManage
         public async Task<ActionResult> Index()
         {
             return View(await db.Report.ToListAsync());
         }
 
-        // GET: ReportManage/Details/5
+        // GET: ReportsManage/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,13 +36,13 @@ namespace AsianUnicorn.Controllers
             return View(report);
         }
 
-        // GET: ReportManage/Create
+        // GET: ReportsManage/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ReportManage/Create
+        // POST: ReportsManage/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -59,7 +59,7 @@ namespace AsianUnicorn.Controllers
             return View(report);
         }
 
-        // GET: ReportManage/Edit/5
+        // GET: ReportsManage/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,7 +74,7 @@ namespace AsianUnicorn.Controllers
             return View(report);
         }
 
-        // POST: ReportManage/Edit/5
+        // POST: ReportsManage/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -90,7 +90,7 @@ namespace AsianUnicorn.Controllers
             return View(report);
         }
 
-        // GET: ReportManage/Delete/5
+        // GET: ReportsManage/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -105,7 +105,7 @@ namespace AsianUnicorn.Controllers
             return View(report);
         }
 
-        // POST: ReportManage/Delete/5
+        // POST: ReportsManage/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

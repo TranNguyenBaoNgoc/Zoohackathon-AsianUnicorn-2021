@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="~/Areas/User/asset2/css/style.css" />
 
     <!--// SITES TITLE // -->
-    <title>PORTA - Creative new One Page Template</title>
+    <title>SWSW</title>
 </head>
 
 <body>
@@ -53,12 +53,6 @@
     <nav hidden>
         <div class="nav-header">
             <!-- Navbar Logo -->
-            <a href="#" class="brand">
-                <img class="scrolled" src="~/Areas/User/asset2/img/logo.png" alt="logo" />
-                <img class="top"
-                     src="~/Areas/User/asset2/img/logo-light.png"
-                     alt="logo-scrolled" />
-            </a>
             <!-- Burger Menu -->
             <button class="toggle-bar">
                 <span class="fa fa-bars"></span>
@@ -71,7 +65,8 @@
             <li class="scrollspy"><a href="#new">News</a></li>
             <li class="scrollspy"><a href="#work">Work</a></li>
             <li class="scrollspy"><a href="#compaign">Campaign</a></li>
-            <li class="scrollspy"><a href="#contact">Contact Us</a></li>
+            @*<li class="scrollspy"><a href="#contact">Contact Us</a></li>*@
+            <li><a href="@Url.Action("Create", "Reports")">Report to Us</a></li>
             <li><a href="@Url.Action("Index", "Animals")">Research</a></li>
         </ul>
     </nav>
