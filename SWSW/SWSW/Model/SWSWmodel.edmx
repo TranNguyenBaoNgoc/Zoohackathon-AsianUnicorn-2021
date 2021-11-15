@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Hackathon2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Hackathon2021.dbo.Account' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Account">
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PasswordUser" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommonName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ScientificName" Type="varchar(max)" />
+          <Property Name="EnglishName" Type="varchar(max)" />
+          <Property Name="DistributionAnimal" Type="nvarchar(max)" />
+          <Property Name="IDClass" Type="int" />
+          <Property Name="ProtectionID" Type="int" />
+          <Property Name="ConservationID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hackathon2021.dbo.AnimalProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AnimalProducts">
+          <Key>
+            <PropertyRef Name="AnimalProductsID" />
+          </Key>
+          <Property Name="AnimalProductsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnimalProductsName" Type="nvarchar(max)" />
+          <Property Name="DescriptionAnimalProducts" Type="ntext" />
+          <Property Name="AnimalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="Author" Type="nvarchar" MaxLength="500" />
+          <Property Name="Category_BlogID" Type="int" />
+          <Property Name="TagID" Type="int" />
+        </EntityType>
+        <EntityType Name="Blog_Tag">
+          <Key>
+            <PropertyRef Name="Blog_TagID" />
+          </Key>
+          <Property Name="Blog_TagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnimalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Category_Blog">
+          <Key>
+            <PropertyRef Name="Catagory_BlogID" />
+          </Key>
+          <Property Name="Catagory_BlogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="IDClass" />
+          </Key>
+          <Property Name="IDClass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameClass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescriptionClass" Type="ntext" />
+        </EntityType>
+        <EntityType Name="ConservationStatus">
+          <Key>
+            <PropertyRef Name="ConservationID" />
+          </Key>
+          <Property Name="ConservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConservationGroup" Type="nchar" MaxLength="10" />
+          <Property Name="ConservationDescription" Type="ntext" />
+        </EntityType>
+        <EntityType Name="ProtectionStatus">
+          <Key>
+            <PropertyRef Name="ProtectionID" />
+          </Key>
+          <Property Name="ProtectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProtectionGroup" Type="char" MaxLength="10" />
+          <Property Name="ProtectionDescription" Type="ntext" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Animal__Conserva__1CBC4616">
+          <End Role="ConservationStatus" Type="Self.ConservationStatus" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConservationStatus">
+              <PropertyRef Name="ConservationID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ConservationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animal__IDClass__1AD3FDA4">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="IDClass" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="IDClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animal__Protecti__1BC821DD">
+          <End Role="ProtectionStatus" Type="Self.ProtectionStatus" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProtectionStatus">
+              <PropertyRef Name="ProtectionID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ProtectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AnimalPro__Anima__1EA48E88">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="AnimalProducts" Type="Self.AnimalProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="AnimalProducts">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog__Category_B__282DF8C2">
+          <End Role="Category_Blog" Type="Self.Category_Blog" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Blog">
+              <PropertyRef Name="Catagory_BlogID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="Category_BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog__TagID__29221CFB">
+          <End Role="Blog_Tag" Type="Self.Blog_Tag" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Tag">
+              <PropertyRef Name="Blog_TagID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog_Tag__Animal__25518C17">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="Blog_Tag" Type="Self.Blog_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="Blog_Tag">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Hackathon2021ModelStoreContainer">
+          <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Blog_Tag" EntityType="Self.Blog_Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category_Blog" EntityType="Self.Category_Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConservationStatus" EntityType="Self.ConservationStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProtectionStatus" EntityType="Self.ProtectionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnimalProducts" EntityType="Self.AnimalProducts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AnimalProducts].[AnimalProductsID] AS [AnimalProductsID], 
+    [AnimalProducts].[AnimalProductsName] AS [AnimalProductsName], 
+    [AnimalProducts].[DescriptionAnimalProducts] AS [DescriptionAnimalProducts], 
+    [AnimalProducts].[AnimalID] AS [AnimalID]
+    FROM [dbo].[AnimalProducts] AS [AnimalProducts]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Animal__Conserva__1CBC4616" Association="Self.FK__Animal__Conserva__1CBC4616">
+            <End Role="ConservationStatus" EntitySet="ConservationStatus" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animal__IDClass__1AD3FDA4" Association="Self.FK__Animal__IDClass__1AD3FDA4">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animal__Protecti__1BC821DD" Association="Self.FK__Animal__Protecti__1BC821DD">
+            <End Role="ProtectionStatus" EntitySet="ProtectionStatus" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AnimalPro__Anima__1EA48E88" Association="Self.FK__AnimalPro__Anima__1EA48E88">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="AnimalProducts" EntitySet="AnimalProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog__Category_B__282DF8C2" Association="Self.FK__Blog__Category_B__282DF8C2">
+            <End Role="Category_Blog" EntitySet="Category_Blog" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog__TagID__29221CFB" Association="Self.FK__Blog__TagID__29221CFB">
+            <End Role="Blog_Tag" EntitySet="Blog_Tag" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog_Tag__Animal__25518C17" Association="Self.FK__Blog_Tag__Animal__25518C17">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="Blog_Tag" EntitySet="Blog_Tag" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Hackathon2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ScientificName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EnglishName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DistributionAnimal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDClass" Type="Int32" />
+          <Property Name="ProtectionID" Type="Int32" />
+          <Property Name="ConservationID" Type="Int32" />
+          <NavigationProperty Name="ConservationStatu" Relationship="Self.FK__Animal__Conserva__1CBC4616" FromRole="Animal" ToRole="ConservationStatus" />
+          <NavigationProperty Name="Class" Relationship="Self.FK__Animal__IDClass__1AD3FDA4" FromRole="Animal" ToRole="Class" />
+          <NavigationProperty Name="ProtectionStatu" Relationship="Self.FK__Animal__Protecti__1BC821DD" FromRole="Animal" ToRole="ProtectionStatus" />
+          <NavigationProperty Name="AnimalProducts" Relationship="Self.FK__AnimalPro__Anima__1EA48E88" FromRole="Animal" ToRole="AnimalProducts" />
+          <NavigationProperty Name="Blog_Tag" Relationship="Self.FK__Blog_Tag__Animal__25518C17" FromRole="Animal" ToRole="Blog_Tag" />
+        </EntityType>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="Author" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Category_BlogID" Type="Int32" />
+          <Property Name="TagID" Type="Int32" />
+          <NavigationProperty Name="Category_Blog" Relationship="Self.FK__Blog__Category_B__282DF8C2" FromRole="Blog" ToRole="Category_Blog" />
+          <NavigationProperty Name="Blog_Tag" Relationship="Self.FK__Blog__TagID__29221CFB" FromRole="Blog" ToRole="Blog_Tag" />
+        </EntityType>
+        <EntityType Name="Blog_Tag">
+          <Key>
+            <PropertyRef Name="Blog_TagID" />
+          </Key>
+          <Property Name="Blog_TagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalID" Type="Int32" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK__Blog_Tag__Animal__25518C17" FromRole="Blog_Tag" ToRole="Animal" />
+          <NavigationProperty Name="Blogs" Relationship="Self.FK__Blog__TagID__29221CFB" FromRole="Blog_Tag" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="Category_Blog">
+          <Key>
+            <PropertyRef Name="Catagory_BlogID" />
+          </Key>
+          <Property Name="Catagory_BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Blogs" Relationship="Self.FK__Blog__Category_B__282DF8C2" FromRole="Category_Blog" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="IDClass" />
+          </Key>
+          <Property Name="IDClass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescriptionClass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK__Animal__IDClass__1AD3FDA4" FromRole="Class" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="ConservationStatu">
+          <Key>
+            <PropertyRef Name="ConservationID" />
+          </Key>
+          <Property Name="ConservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConservationGroup" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ConservationDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK__Animal__Conserva__1CBC4616" FromRole="ConservationStatus" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="ProtectionStatu">
+          <Key>
+            <PropertyRef Name="ProtectionID" />
+          </Key>
+          <Property Name="ProtectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProtectionGroup" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ProtectionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK__Animal__Protecti__1BC821DD" FromRole="ProtectionStatus" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="AnimalProduct">
+          <Key>
+            <PropertyRef Name="AnimalProductsID" />
+          </Key>
+          <Property Name="AnimalProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalProductsName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionAnimalProducts" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnimalID" Type="Int32" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK__AnimalPro__Anima__1EA48E88" FromRole="AnimalProducts" ToRole="Animal" />
+        </EntityType>
+        <Association Name="FK__Animal__Conserva__1CBC4616">
+          <End Role="ConservationStatus" Type="Self.ConservationStatu" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConservationStatus">
+              <PropertyRef Name="ConservationID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ConservationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animal__IDClass__1AD3FDA4">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="IDClass" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="IDClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animal__Protecti__1BC821DD">
+          <End Role="ProtectionStatus" Type="Self.ProtectionStatu" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProtectionStatus">
+              <PropertyRef Name="ProtectionID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="ProtectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AnimalPro__Anima__1EA48E88">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="AnimalProducts" Type="Self.AnimalProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="AnimalProducts">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog_Tag__Animal__25518C17">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="Blog_Tag" Type="Self.Blog_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="Blog_Tag">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog__Category_B__282DF8C2">
+          <End Role="Category_Blog" Type="Self.Category_Blog" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Blog">
+              <PropertyRef Name="Catagory_BlogID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="Category_BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog__TagID__29221CFB">
+          <End Role="Blog_Tag" Type="Self.Blog_Tag" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Tag">
+              <PropertyRef Name="Blog_TagID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Hackathon2021Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animals" EntityType="Self.Animal" />
+          <EntitySet Name="Blogs" EntityType="Self.Blog" />
+          <EntitySet Name="Blog_Tag" EntityType="Self.Blog_Tag" />
+          <EntitySet Name="Category_Blog" EntityType="Self.Category_Blog" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="ConservationStatus" EntityType="Self.ConservationStatu" />
+          <EntitySet Name="ProtectionStatus" EntityType="Self.ProtectionStatu" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="AnimalProducts" EntityType="Self.AnimalProduct" />
+          <AssociationSet Name="FK__Animal__Conserva__1CBC4616" Association="Self.FK__Animal__Conserva__1CBC4616">
+            <End Role="ConservationStatus" EntitySet="ConservationStatus" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animal__IDClass__1AD3FDA4" Association="Self.FK__Animal__IDClass__1AD3FDA4">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animal__Protecti__1BC821DD" Association="Self.FK__Animal__Protecti__1BC821DD">
+            <End Role="ProtectionStatus" EntitySet="ProtectionStatus" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AnimalPro__Anima__1EA48E88" Association="Self.FK__AnimalPro__Anima__1EA48E88">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="AnimalProducts" EntitySet="AnimalProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog_Tag__Animal__25518C17" Association="Self.FK__Blog_Tag__Animal__25518C17">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Blog_Tag" EntitySet="Blog_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog__Category_B__282DF8C2" Association="Self.FK__Blog__Category_B__282DF8C2">
+            <End Role="Category_Blog" EntitySet="Category_Blog" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog__TagID__29221CFB" Association="Self.FK__Blog__TagID__29221CFB">
+            <End Role="Blog_Tag" EntitySet="Blog_Tag" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Hackathon2021ModelStoreContainer" CdmEntityContainer="Hackathon2021Entities1">
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="Hackathon2021Model.Animal">
+              <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="CommonName" ColumnName="CommonName" />
+                <ScalarProperty Name="ScientificName" ColumnName="ScientificName" />
+                <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
+                <ScalarProperty Name="DistributionAnimal" ColumnName="DistributionAnimal" />
+                <ScalarProperty Name="IDClass" ColumnName="IDClass" />
+                <ScalarProperty Name="ProtectionID" ColumnName="ProtectionID" />
+                <ScalarProperty Name="ConservationID" ColumnName="ConservationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="Hackathon2021Model.Blog">
+              <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Category_BlogID" ColumnName="Category_BlogID" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blog_Tag">
+            <EntityTypeMapping TypeName="Hackathon2021Model.Blog_Tag">
+              <MappingFragment StoreEntitySet="Blog_Tag">
+                <ScalarProperty Name="Blog_TagID" ColumnName="Blog_TagID" />
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_Blog">
+            <EntityTypeMapping TypeName="Hackathon2021Model.Category_Blog">
+              <MappingFragment StoreEntitySet="Category_Blog">
+                <ScalarProperty Name="Catagory_BlogID" ColumnName="Catagory_BlogID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="Hackathon2021Model.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="IDClass" ColumnName="IDClass" />
+                <ScalarProperty Name="NameClass" ColumnName="NameClass" />
+                <ScalarProperty Name="DescriptionClass" ColumnName="DescriptionClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConservationStatus">
+            <EntityTypeMapping TypeName="Hackathon2021Model.ConservationStatu">
+              <MappingFragment StoreEntitySet="ConservationStatus">
+                <ScalarProperty Name="ConservationID" ColumnName="ConservationID" />
+                <ScalarProperty Name="ConservationGroup" ColumnName="ConservationGroup" />
+                <ScalarProperty Name="ConservationDescription" ColumnName="ConservationDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProtectionStatus">
+            <EntityTypeMapping TypeName="Hackathon2021Model.ProtectionStatu">
+              <MappingFragment StoreEntitySet="ProtectionStatus">
+                <ScalarProperty Name="ProtectionID" ColumnName="ProtectionID" />
+                <ScalarProperty Name="ProtectionGroup" ColumnName="ProtectionGroup" />
+                <ScalarProperty Name="ProtectionDescription" ColumnName="ProtectionDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Hackathon2021Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnimalProducts">
+            <EntityTypeMapping TypeName="Hackathon2021Model.AnimalProduct">
+              <MappingFragment StoreEntitySet="AnimalProducts">
+                <ScalarProperty Name="AnimalProductsID" ColumnName="AnimalProductsID" />
+                <ScalarProperty Name="AnimalProductsName" ColumnName="AnimalProductsName" />
+                <ScalarProperty Name="DescriptionAnimalProducts" ColumnName="DescriptionAnimalProducts" />
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

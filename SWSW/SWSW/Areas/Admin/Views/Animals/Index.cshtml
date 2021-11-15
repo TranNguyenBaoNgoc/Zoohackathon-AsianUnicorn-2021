@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SWSW.Models.Animal>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            Simple Datatable
+        </div>
+        <div class="card-body">
+            <table class='table table-striped' id="table1">
+                <thead>
+                    <tr>
+                        <th>
+                            Name Class
+                        </th>
+                        <th>
+                            Common Name
+
+                        </th>
+                        <th>
+                            Scientific Name
+                        </th>
+                        <th>
+                            English Name
+                        </th>
+
+                        <th>
+                            Conservation Group
+                        </th>
+                        <th>
+                            Distribution Animal
+                        </th>
+                        <th>
+                            Protection Description
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Class.NameClass)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CommonName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ScientificName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EnglishName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConservationStatu.ConservationGroup)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DistributionAnimal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProtectionStatu.ProtectionDescription)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.AnimalID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.AnimalID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.AnimalID })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+
+            </table>
+            </div>
+        </div>
+    </section>
